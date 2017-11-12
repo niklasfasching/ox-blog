@@ -1,0 +1,182 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font: 100%/1.6 sans-serif;
+  margin: 0 auto;
+  padding: 1em;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 125%;
+    max-width: 42em;
+  }
+}
+
+h1, h2, h3, h4 {
+  margin: 2.5rem 0 1.5rem 0;
+  line-height: 1.25;
+}
+
+.subtitle {
+  font-weight: normal;
+  font-size: 0.8em;
+  color: #555;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+p {
+  margin: 1em 0;
+}
+
+ol, ul {
+  margin: 1em;
+}
+
+li > ol, li > ul {
+  margin: 0 2em;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+caption, .figure {
+  font-family: monospace;
+  font-size: 0.8em;
+  padding: 0.5em;
+}
+
+blockquote {
+  padding-left: 2em;
+  font-style: italic;
+}
+
+table, table * {
+  border: none;
+}
+
+table {
+  font-family: monospace;
+  font-size: 1rem;
+  text-align: left;
+  caption-side: bottom;
+}
+
+table tbody {
+  display: block;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+table thead, table tr {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+
+table td, table th {
+  padding: 0.3em;
+}
+
+table tr:nth-child(even) {
+  background-color: #f3f3f3;
+}
+
+code {
+  padding: 0.05em 0.2em;
+  border: 1px solid #ccc;
+}
+
+table, pre.src, pre.example {
+  max-height: 70vh;
+  margin: 1em 0;
+  padding: 1em;
+  overflow: auto;
+  font-size: 0.85rem;
+}
+
+pre.src, pre.example {
+  color: #dcdccc;
+  background-color: #3f3f3f;
+}
+
+.coderef-off:target {
+  background: rgba(100,100,100,0.5);
+}
+
+.footdef sup {
+  float: left;
+}
+
+.footdef > .footpara {
+  padding-left: 1.5rem;
+}
+
+.categories {
+  margin-top: -1.5rem;
+}
+
+.categories li {
+  display: inline;
+  margin-right: 0.5em;
+}
+
+/* Components */
+
+/* Header */
+
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+header nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header a {
+  text-decoration: none;
+}
+
+header a + a {
+  margin-left: 1rem;
+}
+
+/* Index (not org mode related) */
+
+.index {
+  margin: 0;
+  list-style: none;
+}
+
+.index date {
+  font-family: monospace;
+  font-size: 0.8rem;
+  vertical-align: middle;
+  padding-right: 2rem;
+  color: grey;
+}
+
+.index a {
+  display: block;
+  text-decoration: none;
+  padding: 0.5em 0;
+  color: black;
+}
+
+.index a:hover, a:focus, a:active {
+  text-decoration: none;
+  background: rgba(200,200,200,0.2);
+}

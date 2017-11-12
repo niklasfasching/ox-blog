@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>About</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Niklas Fasching" />
+
+<link rel='stylesheet' href='/ox-blog/main.css' type='text/css'/>
+</head>
+<body>
+<div id="preamble" class="status">
+
+<header>
+  <a class='logo' href='/ox-blog/'>home</a>
+  <nav>
+    <a href='https://www.github.com/niklasfasching/ox-blog'>github</a>
+    <a href='about.html'>about</a>
+  </nav>
+</header>
+</div>
+<div id="content">
+<h1 class="title">About</h1>
+<div id="outline-container-org26900a4" class="outline-2">
+<h2 id="org26900a4"><span class="section-number-2">1</span> ox-blog</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The goal of <code>ox-blog</code> is to be a user-friendly, batteries-included blogging environment for emacs.
+It is built on top of the awesome org export framework and provides
+</p>
+
+<ul class="org-ul">
+<li>development server with livereload</li>
+<li>automatic export on save</li>
+<li>post categories (with index page for each category)</li>
+<li>small codebase &amp; dependency list
+<ul class="org-ul">
+<li>dependencies: <code>org-plus-contrib</code>, <code>htmlize</code></li>
+<li>&lt; 1000 lines of code</li>
+</ul></li>
+<li>motivation to actually write posts (i wish&#x2026; this package exists because I'm procrastinating and not writing posts)</li>
+</ul>
+</div>
+
+<div id="outline-container-org7ce2831" class="outline-3">
+<h3 id="org7ce2831"><span class="section-number-3">1.1</span> Getting Started</h3>
+<div class="outline-text-3" id="text-1-1">
+<ol class="org-ol">
+<li>Put <code>ox-blog.el</code> into your load path</li>
+<li>Create a blog directory</li>
+<li><p>
+Create <code>.dir-locals.el</code> in the blog directory with the following contents
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #99968b;">;; </span><span style="color: #99968b;">.dir-locals.el in ~/blog. Adapt directories to your liking</span>
+((nil . ((eval . (ox-blog-mode 1))
+         (ox-blog-project . (<span style="color: #e5786d;">:source-directory</span> <span style="color: #95e454;">"~/blog/source/"</span>
+                             <span style="color: #e5786d;">:export-directory</span> <span style="color: #95e454;">"~/blog/export/"</span>)))))
+</pre>
+</div></li>
+<li><p>
+Create a post in the source-directory and visit <code>localhost:8000</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-org">#+TITLE: <span style="color: #191970; font-weight: bold;">Hello World</span>
+#+DATE: <span style="color: #191970;">&lt;2018-01-01&gt;</span>
+<span style="color: #99968b;">#+TYPE: post</span>
+
+Lorem Ipsum
+</pre>
+</div></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org82cf30c" class="outline-3">
+<h3 id="org82cf30c"><span class="section-number-3">1.2</span> Configuration</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>Check out the <a href="https://niklasfasching.github.io/ox-blog/">exported</a> example blog and its <a href="https://github.com/niklasfasching/ox-blog/tree/master/source">source</a></li>
+<li><p>
+ox-blog project option can be found under the <code>org-export-blog</code> group in <code>customize</code>. <br />
+The values can be changed by setting the defaults or overwriting them in your <code>ox-blog-project</code> definition.
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(get 'org-export-blog 'custom-group)
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">((ox-blog-project custom-variable)
+ (ox-blog-excluded-files custom-variable)
+ (ox-blog-force-export custom-variable)
+ (ox-blog-with-drafts custom-variable)
+ (ox-blog-index-head custom-variable)
+ (ox-blog-babel-header-args custom-variable)
+ (ox-blog-babel-evaluate custom-variable)
+ (ox-blog-server-idle-seconds custom-variable)
+ (ox-blog-server-port custom-variable)
+ (ox-blog-server-livereload-script custom-variable)
+ (ox-blog-server-base-url custom-variable)
+ (ox-blog-index-template custom-variable)
+ (ox-blog-index-format-function custom-variable)
+ (ox-blog-index-item-format-function custom-variable)
+ (ox-blog-page-category custom-variable))
+</pre>
+</div></li>
+
+<li><p>
+<code>org-export-html</code> options can be listed with <code>(org-export-get-all-options 'html)</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(org-export-get-all-options 'html)
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">((<span style="color: #e5786d;">:html-doctype</span> <span style="color: #95e454;">"HTML_DOCTYPE"</span> nil org-html-doctype)
+ (<span style="color: #e5786d;">:html-container</span> <span style="color: #95e454;">"HTML_CONTAINER"</span> nil org-html-container-element)
+ (<span style="color: #e5786d;">:description</span> <span style="color: #95e454;">"DESCRIPTION"</span> nil nil newline)
+ (<span style="color: #e5786d;">:keywords</span> <span style="color: #95e454;">"KEYWORDS"</span> nil nil space)
+ (<span style="color: #e5786d;">:html-html5-fancy</span> nil <span style="color: #95e454;">"html5-fancy"</span> org-html-html5-fancy)
+ (<span style="color: #e5786d;">:html-link-use-abs-url</span> nil <span style="color: #95e454;">"html-link-use-abs-url"</span> org-html-link-use-abs-url)
+ (<span style="color: #e5786d;">:html-link-home</span> <span style="color: #95e454;">"HTML_LINK_HOME"</span> nil org-html-link-home)
+ (<span style="color: #e5786d;">:html-link-up</span> <span style="color: #95e454;">"HTML_LINK_UP"</span> nil org-html-link-up)
+ (<span style="color: #e5786d;">:html-mathjax</span> <span style="color: #95e454;">"HTML_MATHJAX"</span> nil <span style="color: #95e454;">""</span> space)
+ (<span style="color: #e5786d;">:html-postamble</span> nil <span style="color: #95e454;">"html-postamble"</span> org-html-postamble)
+ (<span style="color: #e5786d;">:html-preamble</span> nil <span style="color: #95e454;">"html-preamble"</span> org-html-preamble)
+ (<span style="color: #e5786d;">:html-head</span> <span style="color: #95e454;">"HTML_HEAD"</span> nil org-html-head newline)
+ (<span style="color: #e5786d;">:html-head-extra</span> <span style="color: #95e454;">"HTML_HEAD_EXTRA"</span> nil org-html-head-extra newline)
+ (<span style="color: #e5786d;">:subtitle</span> <span style="color: #95e454;">"SUBTITLE"</span> nil nil parse)
+ (<span style="color: #e5786d;">:html-head-include-default-style</span> nil <span style="color: #95e454;">"html-style"</span> org-html-head-include-default-style)
+ (<span style="color: #e5786d;">:html-head-include-scripts</span> nil <span style="color: #95e454;">"html-scripts"</span> org-html-head-include-scripts)
+ (<span style="color: #e5786d;">:html-allow-name-attribute-in-anchors</span> nil nil org-html-allow-name-attribute-in-anchors)
+ (<span style="color: #e5786d;">:html-divs</span> nil nil org-html-divs)
+ (<span style="color: #e5786d;">:html-checkbox-type</span> nil nil org-html-checkbox-type)
+ (<span style="color: #e5786d;">:html-extension</span> nil nil org-html-extension)
+ (<span style="color: #e5786d;">:html-footnote-format</span> nil nil org-html-footnote-format)
+ (<span style="color: #e5786d;">:html-footnote-separator</span> nil nil org-html-footnote-separator)
+ (<span style="color: #e5786d;">:html-footnotes-section</span> nil nil org-html-footnotes-section)
+ (<span style="color: #e5786d;">:html-format-drawer-function</span> nil nil org-html-format-drawer-function)
+ (<span style="color: #e5786d;">:html-format-headline-function</span> nil nil org-html-format-headline-function)
+ (<span style="color: #e5786d;">:html-format-inlinetask-function</span> nil nil org-html-format-inlinetask-function)
+ (<span style="color: #e5786d;">:html-home/up-format</span> nil nil org-html-home/up-format)
+ (<span style="color: #e5786d;">:html-indent</span> nil nil org-html-indent)
+ (<span style="color: #e5786d;">:html-infojs-options</span> nil nil org-html-infojs-options)
+ (<span style="color: #e5786d;">:html-infojs-template</span> nil nil org-html-infojs-template)
+ (<span style="color: #e5786d;">:html-inline-image-rules</span> nil nil org-html-inline-image-rules)
+ (<span style="color: #e5786d;">:html-link-org-files-as-html</span> nil nil org-html-link-org-files-as-html)
+ (<span style="color: #e5786d;">:html-mathjax-options</span> nil nil org-html-mathjax-options)
+ (<span style="color: #e5786d;">:html-mathjax-template</span> nil nil org-html-mathjax-template)
+ (<span style="color: #e5786d;">:html-metadata-timestamp-format</span> nil nil org-html-metadata-timestamp-format)
+ (<span style="color: #e5786d;">:html-postamble-format</span> nil nil org-html-postamble-format)
+ (<span style="color: #e5786d;">:html-preamble-format</span> nil nil org-html-preamble-format)
+ (<span style="color: #e5786d;">:html-table-align-individual-fields</span> nil nil org-html-table-align-individual-fields)
+ (<span style="color: #e5786d;">:html-table-caption-above</span> nil nil org-html-table-caption-above)
+ (<span style="color: #e5786d;">:html-table-data-tags</span> nil nil org-html-table-data-tags)
+ (<span style="color: #e5786d;">:html-table-header-tags</span> nil nil org-html-table-header-tags)
+ (<span style="color: #e5786d;">:html-table-use-header-tags-for-first-column</span> nil nil org-html-table-use-header-tags-for-first-column)
+ (<span style="color: #e5786d;">:html-tag-class-prefix</span> nil nil org-html-tag-class-prefix)
+ (<span style="color: #e5786d;">:html-text-markup-alist</span> nil nil org-html-text-markup-alist)
+ (<span style="color: #e5786d;">:html-todo-kwd-class-prefix</span> nil nil org-html-todo-kwd-class-prefix)
+ (<span style="color: #e5786d;">:html-toplevel-hlevel</span> nil nil org-html-toplevel-hlevel)
+ (<span style="color: #e5786d;">:html-use-infojs</span> nil nil org-html-use-infojs)
+ (<span style="color: #e5786d;">:html-validation-link</span> nil nil org-html-validation-link)
+ (<span style="color: #e5786d;">:html-viewport</span> nil nil org-html-viewport)
+ (<span style="color: #e5786d;">:html-inline-images</span> nil nil org-html-inline-images)
+ (<span style="color: #e5786d;">:html-table-attributes</span> nil nil org-html-table-default-attributes)
+ (<span style="color: #e5786d;">:html-table-row-open-tag</span> nil nil org-html-table-row-open-tag)
+ (<span style="color: #e5786d;">:html-table-row-close-tag</span> nil nil org-html-table-row-close-tag)
+ (<span style="color: #e5786d;">:html-xml-declaration</span> nil nil org-html-xml-declaration)
+ (<span style="color: #e5786d;">:html-klipsify-src</span> nil nil org-html-klipsify-src)
+ (<span style="color: #e5786d;">:html-klipse-css</span> nil nil org-html-klipse-css)
+ (<span style="color: #e5786d;">:html-klipse-js</span> nil nil org-html-klipse-js)
+ (<span style="color: #e5786d;">:html-klipse-selection-script</span> nil nil org-html-klipse-selection-script)
+ (<span style="color: #e5786d;">:infojs-opt</span> <span style="color: #95e454;">"INFOJS_OPT"</span> nil nil)
+ (<span style="color: #e5786d;">:creator</span> <span style="color: #95e454;">"CREATOR"</span> nil org-html-creator-string)
+ (<span style="color: #e5786d;">:with-latex</span> nil <span style="color: #95e454;">"tex"</span> org-html-with-latex)
+ (<span style="color: #e5786d;">:latex-header</span> <span style="color: #95e454;">"LATEX_HEADER"</span> nil nil newline))
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgab37506" class="outline-3">
+<h3 id="orgab37506"><span class="section-number-3">1.3</span> Publishing</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Publishing is done via git. Use <code>ox-blog-publish</code> to export &amp; push the exported files.
+All you need to do is
+</p>
+<ol class="org-ol">
+<li>create a git repository in your <code>:export-directory</code></li>
+<li>set the origin remote</li>
+<li>OPTIONAL
+<ul class="org-ul">
+<li>check out a branch</li>
+<li>add a <code>.gitignore</code> file (e.g. to not push files in the <code>drafts/</code> folder)</li>
+</ul></li>
+</ol>
+</div>
+
+<div id="outline-container-org775f792" class="outline-4">
+<h4 id="org775f792"><span class="section-number-4">1.3.1</span> Github Pages</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+Follow <a href="https://pages.github.com/">https://pages.github.com/</a>
+</p>
+
+<p>
+In the <code>:export-directory</code> run
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">git init
+git remote add origin git@github.com:username/username.github.io.git
+</pre>
+</div>
+
+<p>
+Run <code>ox-blog-publish</code>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orga293c86" class="outline-2">
+<h2 id="orga293c86"><span class="section-number-2">2</span> Develoment</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+<pre class="src src-sh">make install
+make test
+</pre>
+</div>
+</div>
+<div id="outline-container-org15e7611" class="outline-3">
+<h3 id="org15e7611"><span class="section-number-3">2.1</span> Features</h3>
+<div class="outline-text-3" id="text-2-1">
+</div>
+<div id="outline-container-orgb9958fb" class="outline-4">
+<h4 id="orgb9958fb"><span class="section-number-4">2.1.1</span> Planned</h4>
+<div class="outline-text-4" id="text-2-1-1">
+</div>
+<ol class="org-ol">
+<li><a id="orgc861b86"></a>melpa<br />
+<div class="outline-text-5" id="text-2-1-1-1">
+<p>
+<a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Documentation-Tips.html">https://www.gnu.org/software/emacs/manual/html_node/elisp/Documentation-Tips.html</a>
+<a href="https://github.com/emacsattic/org-magit/issues/5">https://github.com/emacsattic/org-magit/issues/5</a>
+</p>
+</div>
+</li>
+<li><a id="org9780f58"></a>document org-export<br />
+<div class="outline-text-5" id="text-2-1-1-2">
+<ul class="org-ul">
+<li>:filter-alist overrides in project</li>
+</ul>
+</div>
+</li>
+<li><a id="orge471c6f"></a>publishing via git<br /></li>
+</ol>
+</div>
+<div id="outline-container-org97e8da9" class="outline-4">
+<h4 id="org97e8da9"><span class="section-number-4">2.1.2</span> Ideas</h4>
+<div class="outline-text-4" id="text-2-1-2">
+</div>
+<ol class="org-ol">
+<li><a id="orgcc8225c"></a>multi-post files<br />
+<div class="outline-text-5" id="text-2-1-2-1">
+<p>
+Sometimes posts are related and it would be nice to keep them in the same file.
+Problem: Caching via modified timestamp of file falls apart for multi-post files
+</p>
+</div>
+</li>
+<li><a id="org139ff61"></a>custom theme for code highlighting<br />
+<div class="outline-text-5" id="text-2-1-2-2">
+<p>
+The <code>emacs --batch</code> already works using 2 lines of glue code so this is low
+priority.
+</p>
+
+<ul class="org-ul">
+<li>Htmlize css classes seems like a fragile solution. Requires an up to date
+list of all faces used in the blog.</li>
+<li>Export from clean emacs session using <code>emacs --batch</code>. Can load any theme and
+set variables to liking without conflicting with actual session.
+This already works (see Makefile export task)</li>
+<li>Change where htmlize gets it's face definitions from. loading a theme adds
+the face definitions to the face symbol. Could look at the symbol plist
+rather than the currently applied setting. Also look into
+<code>htmlize-face-overrides</code></li>
+</ul>
+</div>
+</li>
+<li><a id="orgada4853"></a>export rss / atom feed<br />
+<div class="outline-text-5" id="text-2-1-2-3">
+<ul class="org-ul">
+<li><code>:feed-template</code></li>
+<li><code>:feed-function</code></li>
+<li><code>:feed-item-function</code></li>
+</ul>
+</div>
+</li>
+<li><a id="orgf1c370a"></a>rename node<br />
+<div class="outline-text-5" id="text-2-1-2-4">
+<p>
+naming is hard - no good ideas yet
+file-name -&gt; file -&gt; post (doesn't work for non-post org-nodes)
+</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

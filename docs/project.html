@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Project Definition</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Niklas Fasching" />
+
+<link rel='stylesheet' href='/ox-blog/main.css' type='text/css'/>
+</head>
+<body>
+<div id="preamble" class="status">
+
+<header>
+  <a class='logo' href='/ox-blog/'>home</a>
+  <nav>
+    <a href='https://www.github.com/niklasfasching/ox-blog'>github</a>
+    <a href='about.html'>about</a>
+  </nav>
+</header>
+</div>
+<div id="content">
+<h1 class="title">Project Definition
+<br />
+<span class="subtitle">How this blog is generated</span>
+</h1>
+<ul class='categories'>
+<li><a href='../#emacs'>emacs</a></li>
+<li><a href='../#ox-blog'>ox-blog</a></li>
+</ul>
+
+<div id="outline-container-org6759b91" class="outline-2">
+<h2 id="org6759b91"><span class="section-number-2">1</span> Configuration</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+All configuration for this example blog is contained inside <code>.dir-locals.el</code>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">((nil . (<span style="color: #99968b;">;; </span><span style="color: #99968b;">export blog whenever a file in the source directory is changed</span>
+         (eval . (ox-blog-mode 1))
+         <span style="color: #99968b;">;; </span><span style="color: #99968b;">normally :source-directory &amp; :export-directory must be absolute to</span>
+         <span style="color: #99968b;">;; </span><span style="color: #99968b;">enable exporting from any subdirectory.</span>
+         <span style="color: #99968b;">;; </span><span style="color: #99968b;">For the demo blog relative paths are possible &amp; required to enable</span>
+         <span style="color: #99968b;">;; </span><span style="color: #99968b;">exporting the blog independent of where the ox-blog repository lies.</span>
+         <span style="color: #99968b;">;; </span><span style="color: #99968b;">This only works because export is only ever executed from the</span>
+         <span style="color: #99968b;">;; </span><span style="color: #99968b;">./source directory</span>
+
+         (ox-blog-project . (<span style="color: #e5786d;">:source-directory</span> <span style="color: #95e454;">"../source/"</span>
+                                                         <span style="color: #e5786d;">:export-directory</span> <span style="color: #95e454;">"../docs/"</span>
+                             <span style="color: #e5786d;">:excluded-files</span> (<span style="color: #95e454;">".dir-locals.el"</span>)
+                             <span style="color: #e5786d;">:server-base-url</span> <span style="color: #95e454;">"/ox-blog"</span>
+                             <span style="color: #e5786d;">:html-head</span> <span style="color: #95e454;">"</span>
+<span style="color: #95e454;">&lt;link rel='stylesheet' href='/ox-blog/main.css' type='text/css'/&gt;"</span>
+                             <span style="color: #e5786d;">:index-head</span> <span style="color: #95e454;">"</span>
+<span style="color: #95e454;">&lt;meta name='description' content='ox-blog demo project'&gt;</span>
+<span style="color: #95e454;">&lt;link rel='stylesheet' href='/ox-blog/main.css' type='text/css'/&gt;</span>
+<span style="color: #95e454;">&lt;link rel='stylesheet' href='/ox-blog/index.css' type='text/css'/&gt;"</span>
+                             <span style="color: #e5786d;">:html-preamble</span> <span style="color: #95e454;">"</span>
+<span style="color: #95e454;">&lt;header&gt;</span>
+<span style="color: #95e454;">  &lt;a class='logo' href='/ox-blog/'&gt;home&lt;/a&gt;</span>
+<span style="color: #95e454;">  &lt;nav&gt;</span>
+<span style="color: #95e454;">    &lt;a href='https://www.github.com/niklasfasching/ox-blog'&gt;github&lt;/a&gt;</span>
+<span style="color: #95e454;">    &lt;a href='about.html'&gt;about&lt;/a&gt;</span>
+<span style="color: #95e454;">  &lt;/nav&gt;</span>
+<span style="color: #95e454;">&lt;/header&gt;"</span>
+                             <span style="color: #e5786d;">:html-postamble</span> <span style="color: #95e454;">""</span>
+                             <span style="color: #e5786d;">:html-head-include-scripts</span> nil
+                             <span style="color: #e5786d;">:html-head-include-default-style</span> nil
+                             <span style="color: #e5786d;">:time-stamp-file</span> nil
+                             <span style="color: #e5786d;">:with-sub-superscript</span> {}
+                             <span style="color: #e5786d;">:with-toc</span> nil)))))
+</pre>
+</div>
+
+<p>
+The export is started via the <code>export</code> target in the <code>Makefile</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-makefile"><span style="color: #cae682;">.PHONY</span>: install
+<span style="color: #cae682;">install</span>:
+        emacs \
+                --batch \
+                --quick \
+                --eval <span style="color: #95e454;">"(require 'package)"</span> \
+                --eval <span style="color: #95e454;">'(add-to-list (quote package-archives) (quote ("melpa" . "http://melpa.org/packages/")))'</span> \
+                --eval <span style="color: #95e454;">'(setq package-user-dir (concat default-directory ".emacs"))'</span> \
+                --eval <span style="color: #95e454;">'(package-initialize)'</span> \
+                --eval <span style="color: #95e454;">"(package-refresh-contents)"</span> \
+                --eval <span style="color: #95e454;">"(package-install-from-archive (cadr (assoc 'org package-archive-contents)))"</span> \
+                --eval <span style="color: #95e454;">"(package-install-from-archive (cadr (assoc 'htmlize package-archive-contents)))"</span>
+
+<span style="color: #cae682;">.PHONY</span>: test
+<span style="color: #cae682;">test</span>:
+        emacs \
+                --batch \
+                --quick \
+                --eval <span style="color: #95e454;">'(setq package-user-dir (concat default-directory ".emacs"))'</span> \
+                --eval <span style="color: #95e454;">'(package-initialize)'</span> \
+                --eval <span style="color: #95e454;">'(normal-top-level-add-to-load-path (list "test" "."))'</span> \
+                --eval <span style="color: #95e454;">'(mapc (lambda (p) (delete-process p)) (process-list))'</span> \
+                --eval <span style="color: #95e454;">'(load "ox-blog-test.el")'</span> \
+                --eval <span style="color: #95e454;">'(ert-run-tests-batch-and-exit)'</span>
+
+<span style="color: #cae682;">.PHONY</span>: export
+<span style="color: #cae682;">export</span>:
+        emacs \
+                --batch \
+                --quick \
+                --eval <span style="color: #95e454;">'(setq package-user-dir (concat default-directory ".emacs"))'</span> \
+                --eval <span style="color: #95e454;">'(package-initialize)'</span> \
+                --eval <span style="color: #95e454;">'(normal-top-level-add-to-load-path (list "."))'</span> \
+                --eval <span style="color: #95e454;">'(mapc (lambda (p) (delete-process p)) (process-list))'</span> \
+                --eval <span style="color: #95e454;">'(defun face-spec-set-match-display (&amp;rest args) t)'</span> \
+                --eval <span style="color: #95e454;">"(load-theme 'wombat)"</span> \
+                --eval <span style="color: #95e454;">"(require 'ox-blog)"</span> \
+                --eval <span style="color: #95e454;">'(setq default-directory (expand-file-name "source/"))'</span> \
+                --eval <span style="color: #95e454;">'(hack-dir-local-variables-non-file-buffer)'</span> \
+                --eval <span style="color: #95e454;">'(let (org-confirm-babel-evaluate) (ox-blog-export :force-export t))'</span>
+</pre>
+</div>
+
+<p>
+As you can see <code>face-spec-set-match-display</code> has been overriden to always
+return <code>t</code>. This is not a requirement of <code>ox-blog</code> but a workaround to a
+limitation of exporting from <code>emacs --batch</code>.
+</p>
+
+<p>
+To export highlighted code blocks a theme has to be loaded. Sadly, <code>emacs
+--batch</code> claims to have a monochrome display - which makes face
+definitions restricted to color displays not apply. Overriding
+<code>face-spec-set-match-display</code> is just a way of getting these faces
+applied nonetheless.
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>

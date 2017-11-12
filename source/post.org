@@ -1,0 +1,75 @@
+#+TITLE: Example post
+#+SUBTITLE: css and categories
+#+DATE: <2017-12-10>
+#+CATEGORIES: category-a
+
+Content before first heading
+is treated as the excerpt of the post
+* Example Content
+** Ordered List
+1. this
+   1. with sub lists!
+   2. crazy
+2. is
+   - foo
+   - bar
+3. an
+4. ordered
+5. list
+** Unordered List
+- this
+   1. with sub lists!
+   2. crazy
+- is
+   - foo
+   - bar
+- an
+- unordered
+- list
+** Table with caption
+#+CAPTION: Just some example data with a caption
+| name       | unused_time            |
+|------------+------------------------|
+| ER164      | 1 day 09:00:00         |
+| H Innenge1 | 2 days 02:00:00        |
+| EWEG2      | 2 days 02:00:00        |
+| EW1OG      | 2 days 02:00:00        |
+| EWEG1      | 2 days 02:00:00        |
+| A703       | 2 days 20:00:00        |
+| EW109      | 6 days 22:00:00        |
+| H Innenge2 | 17 days 08:00:00       |
+| K004       | 27 days 16:00:00       |
+| KL-HLabor  | 1 mon 21 days 10:00:00 |
+** Images
+Taken from https://www.pexels.com/de/foto/vogel-tier-eule-komisch-9226/
+
+*** captioned
+#+CAPTION: what a nice caption!
+[[file:animals-birds-owl-fauna.jpg]]
+
+*** without caption
+[[file:animals-birds-owl-fauna.jpg]]
+** Blocks
+*** Sourcecode
+#+INCLUDE: ./main.css src css
+*** Quotes and stuff
+
+: Example Block
+: foo bar
+
+#+BEGIN_QUOTE
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+
+~ http://www.loremipsum.de
+#+END_QUOTE
+** Text
+- *bold*
+- _underlined_
+- /italic/
+- ~code~
+- =verbatim=
+- with^{superscript}
+- with_{subscript}
+- long line:
+  lorem ipsum lorem ipsum lorem ipsumlorem ipsum lorem ipsum lorem ipsumlorem ipsum lorem ipsum lorem ipsumlorem ipsum lorem ipsum lorem ipsumlorem ipsum lorem ipsum lorem ipsumlorem ipsum lorem ipsum lorem ipsum

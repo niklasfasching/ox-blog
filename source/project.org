@@ -1,0 +1,22 @@
+#+TITLE: Project Definition
+#+SUBTITLE: How this blog is generated
+#+DATE: <2017-12-12>
+#+CATEGORIES: emacs ox-blog
+
+* Configuration
+All configuration for this example blog is contained inside =.dir-locals.el=.
+
+#+INCLUDE: ./.dir-locals.el src emacs-lisp
+
+The export is started via the =export= target in the =Makefile=.
+#+INCLUDE: ../Makefile src makefile
+
+As you can see =face-spec-set-match-display= has been overriden to always
+return =t=. This is not a requirement of =ox-blog= but a workaround to a
+limitation of exporting from =emacs --batch=.
+
+To export highlighted code blocks a theme has to be loaded. Sadly, =emacs
+--batch= claims to have a monochrome display - which makes face
+definitions restricted to color displays not apply. Overriding
+=face-spec-set-match-display= is just a way of getting these faces
+applied nonetheless.
